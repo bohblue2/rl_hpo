@@ -5,7 +5,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 from rl_hpo.baes import AbsAgent
-from rl_hpo.models.dqn import DQNModel
+from rl_hpo.networks.dqn import DQNNetwork
 from rl_hpo.constants import STATE, ACTION, REWARD, NEXT_STATE, DONE
 
 import random
@@ -15,7 +15,6 @@ import torch
 import torch.optim as optim
 import torch.nn.functional as F
 
-from rl_hpo.params.dqn import DQNHyperParamsWithTune
 
 
 class DQNAgent(AbsAgent):
@@ -45,8 +44,8 @@ class DQNAgent(AbsAgent):
         self.memory: deque[tuple] = deque(maxlen=10000)
 
         # Model and Target Model
-        self.policy_net = DQNModel(state_size, action_size, self.hidden_size)
-        self.target_model = DQNModel(state_size, action_size, self.hidden_size)
+        self.policy_net = DQNNetwork(state_size, action_size, self.hidden_size)
+        self.target_model = DQNNetwork(state_size, action_size, self.hidden_size)
         self.optimizer = optim.Adam(self.policy_net.parameters(), lr=self.learning_rate)
 
         # Initial Synchronization of Target Model

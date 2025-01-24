@@ -33,7 +33,7 @@ class Trainer:
         wandb_runner = None
         if self.config.get('use_wandb', False):
             wandb_runner = wandb.init(
-                project=self.config.get('project_name', None), 
+                project=self.config.get('project_name', "rl_hpo"), 
                 config=self.config, 
                 reinit=True
             )

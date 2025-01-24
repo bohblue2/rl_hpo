@@ -2,14 +2,14 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-class DQNModel(nn.Module):
+class DQNNetwork(nn.Module):
     def __init__(
         self, 
         state_size: int, 
         action_size: int,
         hidden_size: int
     ):
-        super(DQNModel, self).__init__()
+        super(DQNNetwork, self).__init__()
         self.fc1 = nn.Linear(state_size, hidden_size)  
         self.fc2 = nn.Linear(hidden_size, hidden_size)
         self.fc3 = nn.Linear(hidden_size, action_size)  
